@@ -68,8 +68,20 @@ class RefundEventTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('object', $event->getMetadata());
     }
 
-    public function getData()
+    public function testToString()
     {
-        return json_decode('{"id":"EVTESTG53JCVBS","created_at":"2015-11-30T22:52:44.431Z","resource_type":"refunds","action":"created","links":{"refund":"index_ID_123"},"details":{"origin":"api","cause":"payment_refunded","description":"The refund has been created, and will be submitted in the next batch."},"metadata":{}}');
+        $event = new RefundEvent($this->getData());
+
+        $this->assertSame($this->getJson(), (string) $event);
+    }
+
+    protected function getData()
+    {
+        return json_decode($this->getJson());
+    }
+
+    protected function getJson()
+    {
+        return '{"id":"EVTESTG53JCVBS","created_at":"2015-11-30T22:52:44.431Z","resource_type":"refunds","action":"created","links":{"refund":"index_ID_123"},"details":{"origin":"api","cause":"payment_refunded","description":"The refund has been created, and will be submitted in the next batch."},"metadata":{}}';
     }
 }

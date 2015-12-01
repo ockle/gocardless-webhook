@@ -68,8 +68,20 @@ class PaymentEventTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('object', $event->getMetadata());
     }
 
-    public function getData()
+    public function testToString()
     {
-        return json_decode('{"id":"EVTESTHXHH665M","created_at":"2015-11-30T22:51:00.463Z","resource_type":"payments","action":"created","links":{"payment":"index_ID_123"},"details":{"origin":"api","cause":"payment_created","description":"Payment created via the API."},"metadata":{}}');
+        $event = new PaymentEvent($this->getData());
+
+        $this->assertSame($this->getJson(), (string) $event);
+    }
+
+    protected function getData()
+    {
+        return json_decode($this->getJson());
+    }
+
+    protected function getJson()
+    {
+        return '{"id":"EVTESTHXHH665M","created_at":"2015-11-30T22:51:00.463Z","resource_type":"payments","action":"created","links":{"payment":"index_ID_123"},"details":{"origin":"api","cause":"payment_created","description":"Payment created via the API."},"metadata":{}}';
     }
 }

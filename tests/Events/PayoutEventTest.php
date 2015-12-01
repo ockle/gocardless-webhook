@@ -68,8 +68,20 @@ class PayoutEventTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('object', $event->getMetadata());
     }
 
-    public function getData()
+    public function testToString()
     {
-        return json_decode('{"id":"EVTESTCSKSBWCM","created_at":"2015-11-30T22:51:54.875Z","resource_type":"payouts","action":"paid","links":{"payout":"index_ID_123"},"details":{"origin":"gocardless","cause":"payout_paid","description":"GoCardless has transferred the payout to the creditor\'s bank account."},"metadata":{}}');
+        $event = new PayoutEvent($this->getData());
+
+        $this->assertSame($this->getJson(), (string) $event);
+    }
+
+    protected function getData()
+    {
+        return json_decode($this->getJson());
+    }
+
+    protected function getJson()
+    {
+        return '{"id":"EVTESTCSKSBWCM","created_at":"2015-11-30T22:51:54.875Z","resource_type":"payouts","action":"paid","links":{"payout":"index_ID_123"},"details":{"origin":"gocardless","cause":"payout_paid","description":"GoCardless has transferred the payout to the creditor\'s bank account."},"metadata":{}}';
     }
 }

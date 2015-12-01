@@ -75,8 +75,20 @@ class SubscriptionEventTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('object', $event->getMetadata());
     }
 
-    public function getData()
+    public function testToString()
     {
-        return json_decode('{"id":"EVTEST8MC38NRB","created_at":"2015-11-30T22:53:39.875Z","resource_type":"subscriptions","action":"created","links":{"payment":"payment_ID_456","subscription":"index_ID_123"},"details":{"origin":"api","cause":"subscription_created","description":"Subscription created via the API."},"metadata":{}}');
+        $event = new SubscriptionEvent($this->getData());
+
+        $this->assertSame($this->getJson(), (string) $event);
+    }
+
+    protected function getData()
+    {
+        return json_decode($this->getJson());
+    }
+
+    protected function getJson()
+    {
+        return '{"id":"EVTEST8MC38NRB","created_at":"2015-11-30T22:53:39.875Z","resource_type":"subscriptions","action":"created","links":{"payment":"payment_ID_456","subscription":"index_ID_123"},"details":{"origin":"api","cause":"subscription_created","description":"Subscription created via the API."},"metadata":{}}';
     }
 }

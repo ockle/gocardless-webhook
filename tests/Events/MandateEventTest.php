@@ -68,8 +68,20 @@ class MandateEventTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('object', $event->getMetadata());
     }
 
-    public function getData()
+    public function testToString()
     {
-        return json_decode('{"id":"EVTESTXDTY7F4S","created_at":"2015-11-30T22:20:07.648Z","resource_type":"mandates","action":"created","links":{"mandate":"index_ID_123"},"details":{"origin":"api","cause":"mandate_created","description":"Mandate created via the API."},"metadata":{}}');
+        $event = new MandateEvent($this->getData());
+
+        $this->assertSame($this->getJson(), (string) $event);
+    }
+
+    protected function getData()
+    {
+        return json_decode($this->getJson());
+    }
+
+    protected function getJson()
+    {
+        return '{"id":"EVTESTXDTY7F4S","created_at":"2015-11-30T22:20:07.648Z","resource_type":"mandates","action":"created","links":{"mandate":"index_ID_123"},"details":{"origin":"api","cause":"mandate_created","description":"Mandate created via the API."},"metadata":{}}';
     }
 }
