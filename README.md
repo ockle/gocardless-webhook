@@ -12,7 +12,7 @@ Install the library using Composer. Add the following to your composer.json:
 ```json
 {
     "require": {
-        "ockle\gocardless-webhook": "~1.0"
+        "ockle/gocardless-webhook": "~1.0"
     }
 }
 ```
@@ -20,7 +20,7 @@ Install the library using Composer. Add the following to your composer.json:
 and then run:
 
 ```bash
-composer update ockle\gocardless-webhook
+composer update ockle/gocardless-webhook
 ```
 
 ## Usage
