@@ -72,6 +72,66 @@ abstract class AbstractEvent extends Event
     }
 
     /**
+     * Get event scheme
+     *
+     * @return mixed
+     */
+    public function getScheme()
+    {
+        return isset($this->data->details->scheme) ? $this->data->details->scheme : null;
+    }
+
+    /**
+     * Get event reason code
+     *
+     * @return mixed
+     */
+    public function getReasonCode()
+    {
+        return isset($this->data->details->reason_code) ? $this->data->details->reason_code : null;
+    }
+
+    /**
+     * Get event new customer bank account
+     *
+     * @return mixed
+     */
+    public function getNewCustomerBankAccount()
+    {
+        return isset($this->data->links->new_customer_bank_account) ? $this->data->links->new_customer_bank_account : null;
+    }
+
+    /**
+     * Get event previous customer bank ccount
+     *
+     * @return mixed
+     */
+    public function getPreviousCustomerBankAccount()
+    {
+        return isset($this->data->links->previous_customer_bank_account) ? $this->data->links->previous_customer_bank_account : null;
+    }
+
+    /**
+     * Get event organisation
+     *
+     * @return mixed
+     */
+    public function getOrganisation()
+    {
+        return isset($this->data->links->organisation) ? $this->data->links->organisation : null;
+    }
+
+    /**
+     * Get event parent
+     *
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return isset($this->data->links->parent_event) ? $this->data->links->parent_event : null;
+    }
+
+    /**
      * Get event metadata
      *
      * @return mixed
